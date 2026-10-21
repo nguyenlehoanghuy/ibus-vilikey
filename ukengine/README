@@ -1,0 +1,14 @@
+This folder contains ukengine (with changes
+for better use in my project) taking from project
+x-unikey (http://www.unikey.org).
+
+
+----------------------------------------------------------------------
+Modifications by ibus-vilikey (GPL-3.0-or-later, see ../LICENSE):
+  * unikey.cpp: UnikeySetInputMethod() also accepts UkViqr and UkMsVi.
+  * ukengine.cpp (macroMatch): macro case handling now matches UniKey for
+    Windows: lower-case key -> text as defined, First-capital key -> first
+    letter upper-cased, ALL-CAPS key -> text in capitals.
+  * CMakeLists.txt: PIC static library, public include directory.
+Source taken from https://github.com/vn-input/ibus-unikey (commit ede78c3),
+which carries the engine released by Pham Kim Long with x-unikey.

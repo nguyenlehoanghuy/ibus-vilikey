@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component>
+  <name>org.freedesktop.IBus.ViliKey</name>
+  <description>ViliKey — bộ gõ tiếng Việt cho Linux, dùng engine gốc của UniKey</description>
+  <exec>@VN_LIBEXECDIR@/ibus-engine-vilikey --ibus</exec>
+  <version>@VN_VERSION@</version>
+  <author>ViliKey contributors</author>
+  <license>GPL-3.0-or-later</license>
+  <homepage>@VILIKEY_HOMEPAGE@</homepage>
+  <textdomain>ibus-vilikey</textdomain>
+  <engines>
+    <engine>
+      <name>vilikey</name>
+      <language>vi</language>
+      <license>GPL-3.0-or-later</license>
+      <author>ViliKey contributors</author>
+      <icon>@VN_DATADIR@/icons/ibus-vilikey.svg</icon>
+      <layout>default</layout>
+      <longname>ViliKey</longname>
+      <description>Telex, Telex giản lược, VNI, VIQR — engine UniKey, kiểm tra chính tả, gõ tắt</description>
+      <rank>99</rank>
+      <symbol>vi</symbol>
+    </engine>
+  </engines>
+</component>

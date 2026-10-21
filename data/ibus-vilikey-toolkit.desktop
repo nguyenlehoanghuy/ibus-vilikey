@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=ViliKey Converter
+Name[vi]=ViliKey – Chuyển mã
+GenericName=Vietnamese Text Converter
+GenericName[vi]=Chuyển mã tiếng Việt
+Comment=Convert Vietnamese text between TCVN3, VNI, VISCII and Unicode
+Comment[vi]=Chuyển mã văn bản tiếng Việt (TCVN3, VNI, VISCII… sang Unicode)
+Exec=vilikey-toolkit
+Icon=ibus-vilikey
+Terminal=false
+Categories=Utility;TextTools;
+Keywords=vilikey;unikey;tcvn3;vni;unicode;chuyen ma;vietnamese;

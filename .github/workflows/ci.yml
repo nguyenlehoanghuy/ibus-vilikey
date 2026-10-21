@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cài gói phụ thuộc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential cmake pkg-config libibus-1.0-dev libglib2.0-dev \
+            ibus dbus python3-gi gir1.2-ibus-1.0
+
+      - name: Build
+        run: |
+          cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/usr \
+            -DVILIKEY_HOMEPAGE="${{ github.server_url }}/${{ github.repository }}"
+          cmake --build build -j"$(nproc)"
+
+      - name: Test lõi gõ và chuyển mã
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Test tích hợp với ibus-daemon
+        run: dbus-run-session -- tests/run_integration.sh build/ibus-engine-vilikey
+
+      - name: Đóng gói .deb
+        run: cd build && cpack -G DEB
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ibus-vilikey-${{ matrix.os }}
+          path: build/ibus-vilikey_*.deb
+
+      - name: Phát hành (khi đẩy tag v*)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/ibus-vilikey_*.deb
+          generate_release_notes: true

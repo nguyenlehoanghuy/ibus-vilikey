@@ -1,0 +1,5 @@
+;DO NOT DELETE THIS LINE***version=1***
+vn:Việt Nam
+ko:không
+dc:được
+nc:nước
